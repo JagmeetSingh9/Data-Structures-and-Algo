@@ -19,7 +19,7 @@ Sample Output 1 :
     public static void main(String[] args) {
         //int n = 5000;
         //countdigit cd=new countdigit();
-        printsum(6,0);
+        printsum(6,0)dmdnkn;
 
     }
 }
