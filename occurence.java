@@ -19,3 +19,4 @@ public static int[] find(int arr[], int current index, int search_value)
         find(arr,0,9);
     }
 }
+Find v,d
