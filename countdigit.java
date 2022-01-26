@@ -20,7 +20,7 @@ public class countdigit {
         }
         n=n/10;
         count++;
-        printsum(n);
+        print vvjhvsum(n);
     }
 
     public static void main(String[] args) {
