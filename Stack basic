@@ -1,0 +1,56 @@
+
+//stack using array
+public class StackDs {
+    static char arr[];
+    static int size;
+    static int top;
+
+    StackDs(int size) {
+        arr = new char[size];
+        this.size = size;
+        top = -1;
+
+    }
+
+    public static void push(char data) {
+        if (top == -1) {
+            top = 0;
+        } else {
+            top++;
+        }
+        arr[top] = data;
+
+    }
+
+    public static boolean isEmpty() {
+        return top == -1;
+    }
+
+    public static char pop() {
+        if (isEmpty()) {
+            return ' ';
+        }
+        char res = arr[top];
+        top--;
+        return res;
+    }
+
+    public static char peek() {
+        if (isEmpty()) {
+            return ' ';
+        }
+
+        return arr[top];
+    }
+
+    public static void main(String args[]) {
+        StackDs stack = new StackDs(5);
+        stack.push('a');
+        stack.push('b');
+
+        while (!stack.isEmpty()) {
+            System.out.println(stack.peek());
+            stack.pop();
+        }
+    }
+}
