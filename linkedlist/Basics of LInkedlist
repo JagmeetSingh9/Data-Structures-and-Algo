@@ -1,0 +1,128 @@
+//LinkedList Basics
+public class Linkedlist {
+    Node head;
+    int size;
+
+    Linkedlist() {
+        size = 0;
+    }
+
+    class Node {
+        Node next;
+        int data;
+
+        Node(int data) {
+            this.data = data;
+            next = null;
+
+        }
+    }
+
+    public void addFirst(int data) {
+        Node newnode = new Node(data);
+        newnode.next = head;
+        head = newnode;
+        size++;
+    }
+
+    public void addLast(int data) {
+        Node newnode = new Node(data);
+        Node currnode = head;
+        while (currnode.next != null) {
+            currnode = currnode.next;
+        }
+        currnode.next = newnode;
+        size++;
+    }
+
+    public void print() {
+        if (head == null) {
+            System.out.println("null");
+            return;
+        }
+        Node currnode = head;
+        while (currnode != null) {
+            System.out.print(currnode.data + "->");
+            currnode = currnode.next;
+        }
+        System.out.println("null");
+    }
+
+    public void deletefirst() {
+        if (head == null) {
+            System.out.println("Nothing to delete");
+            return;
+        }
+        if (head.next == null) {
+            head = null;
+            return;
+        }
+
+        head = this.head.next;
+
+        size--;
+    }
+
+    public void deletelast() {
+        if (head == null) {
+            System.out.println("Nothing to delete");
+            return;
+        }
+        if (head.next == null) {
+            head = null;
+            return;
+        }
+        size--;
+        Node currnode = head;
+        Node lastnode = head.next;
+        while (lastnode.next != null) {
+            currnode = currnode.next;
+            lastnode = lastnode.next;
+        }
+        currnode.next = null;
+    }
+
+    public void atpos(int data, int pos) {
+        if (pos > size || pos < 0) {
+            System.out.println("Not a position");
+            return;
+        }
+        size++;
+        Node newNode = new Node(data);
+        if (head == null || pos == 0) {
+            newNode.next = head;
+            head = newNode;
+            return;
+        }
+        Node currNode = head;
+        for (int i = 1; i < size; i++) {
+            if (i == pos) {
+                Node nextNode = currNode.next;
+                currNode.next = newNode;
+                newNode.next = nextNode;
+                break;
+            }
+            currNode = currNode.next;
+        }
+    }
+
+    public void getsize() {
+        System.out.println(size);
+    }
+
+    public static void main(String[] args) {
+        Linkedlist l = new Linkedlist();
+        l.addFirst(4);
+        l.addLast(5);
+        l.addFirst(3);
+        l.addFirst(2);
+        l.addLast(6);
+        l.print();
+        l.deletefirst();
+        l.deletelast();
+        l.getsize();
+        l.print();
+        l.atpos(9, 2);
+        l.print();
+    }
+}
