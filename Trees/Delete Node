@@ -1,0 +1,88 @@
+package Trees;
+
+public class binarysearchtree {
+    static class Node {
+        int data;
+        Node left, right;
+
+        Node(int data) {
+            this.data = data;
+            this.left = null;
+            this.right = null;
+        }
+    }
+
+    static class bst {
+        public static Node insertion(Node root, int data) {
+            Node newnode = new Node(data);
+            if (root == null) {
+                root = newnode;
+                return root;
+            }
+            if (newnode.data < root.data) {
+                root.left = insertion(root.left, data);
+
+            }
+            if (newnode.data > root.data)
+                root.right = insertion(root.right, data);
+            return root;
+        }
+
+        public static void inorder(Node root) {
+            if (root == null)
+                return;
+            inorder(root.left);
+            System.out.println(root.data);
+            inorder(root.right);
+        }
+
+        public Node delete(Node root, int data) {
+            if (root == null)
+                return root;
+            if (data < root.data) {
+                root.left = delete(root.left, data);
+                return root.left;
+            } else if (data > root.data) {
+                root.right = delete(root.right, data);
+                return root.right;
+            } else {
+                if (root.left == null)
+                    return root.right;
+                if (root.right == null)
+                    return root.left;
+                root.data = minValue(root.right);
+
+                // Delete the inorder successor
+                root.right = delete(root.right, root.data);
+            }
+
+            return root;
+        }
+
+        int minValue(Node root) {
+            int minv = root.data;
+            while (root.left != null) {
+                minv = root.left.data;
+                root = root.left;
+            }
+            return minv;
+        }
+    }
+
+    public static void main(String[] args) {
+        bst tree = new bst();
+        Node n1 = new Node(22);
+
+        Node root = tree.insertion(n1, 2);
+
+        tree.insertion(root, 44);
+        tree.insertion(root, 441);
+        tree.insertion(root, 4);
+
+        // System.out.println(root.data);
+        tree.inorder(root);
+
+        tree.delete(root, 441);
+        tree.inorder(root);
+    }
+}
