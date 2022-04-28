@@ -1,0 +1,42 @@
+package classques;
+
+public class Graphh {
+    private int V, E;
+    private int adjmatrix[][];
+
+    public Graphh(int nodes) {
+        this.V = nodes;
+        this.E = 0;
+        this.adjmatrix = new int[nodes][nodes];
+    }
+
+    public void addEdge(int u, int v) {
+        adjmatrix[u][v] = 1;
+        adjmatrix[v][u] = 1;
+    }
+
+    public String tString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(V + " vertices" + E + " edges" + "\n");
+        for (int i = 0; i < V; i++) {
+            sb.append(V + ":");
+            for (int w : adjmatrix[i])
+                sb.append(w + " ");
+        }
+        System.out.println();
+        return sb.toString();
+    }
+
+    public static void main(String[] args) {
+        Graphh g = new Graphh(4);
+        g.addEdge(0, 1);
+        // g.addEdge(0, 1);
+        // g.addEdge(0, 2);
+        g.addEdge(1, 2);
+        // g.addEdge(2, 0);
+        g.addEdge(2, 3);
+        g.addEdge(3, 0);
+        // g.tString();
+        System.out.println(g.tString());
+    }
+}
